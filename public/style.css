@@ -6,6 +6,10 @@
   font-family: "WeibeiTC-Bold";
   src: url("assets/font/WeibeiTC-Bold.otf"); }
 
+@font-face {
+  font-family: "to_hell_and_back";
+  src: url("assets/font/to_hell_and_back.ttf\a"); }
+
 input {
   text-align: center;
   margin-left: 80px; }
@@ -23,7 +27,8 @@ input {
 
 .money {
   font-family: "Roboto-Black";
-  margin-left: 80px; }
+  margin-left: 80px;
+  margin-bottom: 10px; }
 
 .money-button {
   font-size: 10px;
@@ -103,7 +108,9 @@ input {
   margin-top: 530px;
   width: 180px;
   height: 80px;
-  text-align: center; }
+  text-align: center;
+  font-size: 22px;
+  font-family: "to_hell_and_back"; }
 
 button {
   outline: none;

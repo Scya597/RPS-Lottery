@@ -66,6 +66,8 @@ class App extends Component {
       totalMoneyB: 0,
       currentMoneyA: 0,
       currentMoneyB: 0,
+      currentMoneyAList: [],
+      currentMoneyBList: [],
       inputMoneyA: 0,
       inputMoneyB: 0,
       winA: 0,
@@ -81,6 +83,8 @@ class App extends Component {
     this.handleInputMoneyB = this.handleInputMoneyB.bind(this);
     this.updateCurrentMoneyA = this.updateCurrentMoneyA.bind(this);
     this.updateCurrentMoneyB = this.updateCurrentMoneyB.bind(this);
+    this.undoCurrentMoneyA = this.undoCurrentMoneyA.bind(this);
+    this.undoCurrentMoneyB = this.undoCurrentMoneyB.bind(this);
     this.setHandA = this.setHandA.bind(this);
     this.setHandB = this.setHandB.bind(this);
     this.checkWin = this.checkWin.bind(this);
@@ -127,6 +131,8 @@ class App extends Component {
         totalMoneyB: newTotalMoneyB,
         currentMoneyA: 0,
         currentMoneyB: 0,
+        currentMoneyAList: [],
+        currentMoneyBList: [],
         rateA,
         rateB,
         handA: 0,
@@ -143,26 +149,34 @@ class App extends Component {
   }
 
   updateCurrentMoneyA() {
-    const currentMoneyA = this.state.currentMoneyA;
-    const inputMoneyA = this.state.inputMoneyA;
+    const { currentMoneyA, inputMoneyA, currentMoneyAList } = this.state;
     const newCurrentMoneyA = (+currentMoneyA) + (+inputMoneyA);
-    if (isNaN(newCurrentMoneyA)) {
-      console.log('Please input Number');
-      this.setState({ inputMoneyA: 0 });
-    } else {
-      this.setState({ currentMoneyA: newCurrentMoneyA, inputMoneyA: 0 });
-    }
+    currentMoneyAList.push(+inputMoneyA);
+    this.setState({ currentMoneyA: newCurrentMoneyA, inputMoneyA: 0, currentMoneyAList });
   }
 
   updateCurrentMoneyB() {
-    const currentMoneyB = this.state.currentMoneyB;
-    const inputMoneyB = this.state.inputMoneyB;
+    const { currentMoneyB, inputMoneyB, currentMoneyBList } = this.state;
     const newCurrentMoneyB = (+currentMoneyB) + (+inputMoneyB);
-    if (isNaN(newCurrentMoneyB)) {
-      console.log('Please input Number');
-      this.setState({ inputMoneyB: 0 });
-    } else {
-      this.setState({ currentMoneyB: newCurrentMoneyB, inputMoneyB: 0 });
+    currentMoneyBList.push(+inputMoneyB);
+    this.setState({ currentMoneyB: newCurrentMoneyB, inputMoneyB: 0, currentMoneyBList });
+  }
+
+  undoCurrentMoneyA() {
+    const { currentMoneyA, currentMoneyAList } = this.state;
+    if (currentMoneyAList.length > 0) {
+      const lastInput = currentMoneyAList.pop();
+      const newCurrentMoneyA = (+currentMoneyA) - (+lastInput);
+      this.setState({ currentMoneyA: newCurrentMoneyA, currentMoneyAList });
+    }
+  }
+
+  undoCurrentMoneyB() {
+    const { currentMoneyB, currentMoneyBList } = this.state;
+    if (currentMoneyBList.length > 0) {
+      const lastInput = currentMoneyBList.pop();
+      const newCurrentMoneyB = (+currentMoneyB) - (+lastInput);
+      this.setState({ currentMoneyB: newCurrentMoneyB, currentMoneyBList });
     }
   }
 
@@ -195,6 +209,8 @@ class App extends Component {
       totalMoneyB: 0,
       currentMoneyA: 0,
       currentMoneyB: 0,
+      currentMoneyAList: [],
+      currentMoneyBList: [],
       inputMoneyA: 0,
       inputMoneyB: 0,
       winA: 0,
@@ -240,11 +256,12 @@ class App extends Component {
                   此輪總投注: {this.state.currentMoneyA}
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   value={this.state.inputMoneyA}
                   onChange={this.handleInputMoneyA}
                 />
               <button className="money-button" onClick={this.updateCurrentMoneyA}>加注</button>
+              <button className="money-button" onClick={this.undoCurrentMoneyA}>復原</button>
                 <div className="hands">
                   <div
                     className="handdiv"
@@ -287,11 +304,12 @@ class App extends Component {
                   此輪總投注: {this.state.currentMoneyB}
                 </div>
                 <input
-                  type="text"
+                  type="number"
                   value={this.state.inputMoneyB}
                   onChange={this.handleInputMoneyB}
                 />
               <button className="money-button" onClick={this.updateCurrentMoneyB}>加注</button>
+              <button className="money-button" onClick={this.undoCurrentMoneyB}>復原</button>
                 <div className="hands">
                   <div
                     className="handdiv"

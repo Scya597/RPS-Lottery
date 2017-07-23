@@ -28,6 +28,7 @@ input {
 .money {
   font-family: "Roboto-Black";
   margin-left: 80px;
+  margin-bottom: 10px;
 }
 
 .money-button {
@@ -122,7 +123,9 @@ input {
   width: 180px;
   height: 80px;
   text-align: center;
+  font-size: 22px;
 }
+
 button {
   outline:none;
   height: 40px;
