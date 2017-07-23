@@ -6,11 +6,56 @@ const formatFloat = (num, pos) => {
 };
 
 const countProb = (x, y) => {
-  if (x === 5 || y === 5) {
-    return 1;
-  } else {
-    return 0.5 * (countProb(x, y + 1) + countProb(y + 1, x));
+  if (x === 0 && y === 1) {
+    return 93 / 256;
+  } else if (x === 0 && y === 2) {
+    return 29 / 128;
+  } else if (x === 0 && y === 3) {
+    return 7 / 64;
+  } else if (x === 0 && y === 4) {
+    return 1 / 32;
+  } else if (x === 1 && y === 0) {
+    return 163 / 256;
+  } else if (x === 1 && y === 1) {
+    return 1 / 2;
+  } else if (x === 1 && y === 2) {
+    return 11 / 32;
+  } else if (x === 1 && y === 3) {
+    return 3 / 16;
+  } else if (x === 1 && y === 4) {
+    return 1 / 16;
+  } else if (x === 2 && y === 0) {
+    return 99 / 128;
+  } else if (x === 2 && y === 1) {
+    return 31 / 32;
+  } else if (x === 2 && y === 2) {
+    return 1 / 2;
+  } else if (x === 2 && y === 3) {
+    return 5 / 16;
+  } else if (x === 2 && y === 4) {
+    return 1 / 8;
+  } else if (x === 3 && y === 0) {
+    return 57 / 64;
+  } else if (x === 3 && y === 1) {
+    return 13 / 16;
+  } else if (x === 3 && y === 2) {
+    return 11 / 16;
+  } else if (x === 3 && y === 3) {
+    return 1 / 2;
+  } else if (x === 3 && y === 4) {
+    return 1 / 4;
+  } else if (x === 4 && y === 0) {
+    return 31 / 32;
+  } else if (x === 4 && y === 1) {
+    return 15 / 16;
+  } else if (x === 4 && y === 2) {
+    return 7 / 8;
+  } else if (x === 4 && y === 3) {
+    return 3 / 4;
+  } else if (x === 4 && y === 4) {
+    return 1 / 2;
   }
+  return 1 / 2;
 };
 
 class App extends Component {
@@ -67,12 +112,13 @@ class App extends Component {
       if (newTotalMoneyA === 0 && newTotalMoneyB === 0 && winA === 0 && winB === 0) {
         aProb = 0.5;
       } else if (newTotalMoneyA === 0 && newTotalMoneyB === 0) {
-        aProb = (0.15 + ((winA / (winA + winB)) * 0.7));
+        aProb = ((countProb(winA, winB) * 3) + (0.5 * 2)) * 0.2;
       } else if (winA === 0 && winB === 0) {
-        aProb = (0.15 + ((newTotalMoneyA / (newTotalMoneyA + newTotalMoneyB)) * 0.7));
+        aProb = ((0.5 * 3)
+          + ((0.21 + ((newTotalMoneyA / (newTotalMoneyA + newTotalMoneyB)) * 0.58)) * 2)) * 0.2;
       } else {
-        aProb = (((0.15 + ((newTotalMoneyA / (newTotalMoneyA + newTotalMoneyB)) * 0.7)) * 3)
-          + ((0.15 + ((winA / (winA + winB)) * 0.7)) * 2)) * 0.2;
+        aProb = (((0.21 + ((newTotalMoneyA / (newTotalMoneyA + newTotalMoneyB)) * 0.58)) * 2)
+          + (countProb(winA, winB) * 3)) * 0.2;
       }
       rateA = (1 / aProb) * 0.9;
       rateB = (1 / (1 - aProb)) * 0.9;
