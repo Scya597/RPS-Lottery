@@ -26,7 +26,23 @@ input {
 }
 
 .money {
+  font-family: "Roboto-Black";
   margin-left: 80px;
+}
+
+.money-button {
+  font-size: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 30px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid black;
+  color:black;
+  &:hover {
+    color:white;
+    background: black;
+  }
 }
 
 .row {
@@ -71,7 +87,7 @@ input {
 }
 
 .hands {
-  padding-top: 10px;
+  padding-top: 20px;
   padding-left: 200px;
   position: relative;
 }
@@ -102,7 +118,7 @@ input {
   top:70%;
   left:50%;
   margin-left: -90px;
-  margin-top: 550px;
+  margin-top: 530px;
   width: 180px;
   height: 80px;
   text-align: center;

@@ -27,7 +27,7 @@ const countProb = (x, y) => {
   } else if (x === 2 && y === 0) {
     return 99 / 128;
   } else if (x === 2 && y === 1) {
-    return 31 / 32;
+    return 21 / 32;
   } else if (x === 2 && y === 2) {
     return 1 / 2;
   } else if (x === 2 && y === 3) {
@@ -244,7 +244,7 @@ class App extends Component {
                   value={this.state.inputMoneyA}
                   onChange={this.handleInputMoneyA}
                 />
-                <div className="money" onClick={this.updateCurrentMoneyA}>加注</div>
+              <button className="money-button" onClick={this.updateCurrentMoneyA}>加注</button>
                 <div className="hands">
                   <div
                     className="handdiv"
@@ -291,7 +291,7 @@ class App extends Component {
                   value={this.state.inputMoneyB}
                   onChange={this.handleInputMoneyB}
                 />
-              <div className="money" onClick={this.updateCurrentMoneyB}>加注</div>
+              <button className="money-button" onClick={this.updateCurrentMoneyB}>加注</button>
                 <div className="hands">
                   <div
                     className="handdiv"
