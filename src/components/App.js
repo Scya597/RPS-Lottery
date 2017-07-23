@@ -86,6 +86,7 @@ class App extends Component {
     this.checkWin = this.checkWin.bind(this);
     this.setResult = this.setResult.bind(this);
     this.reset = this.reset.bind(this);
+    this.renderWinner = this.renderWinner.bind(this);
   }
 
   setHandA(handA) {
@@ -207,14 +208,25 @@ class App extends Component {
     });
   }
 
+  renderWinner() {
+    if (this.state.winnerName === 'A') {
+      return (<div className="winner"><img src="assets/A.jpg" alt="A" />
+      <div className="winner-text">勝者</div>
+        <button onClick={() => this.reset()}>RESET</button></div>);
+    } else {
+      return (<div className="winner"><img src="assets/B.jpg" alt="B" />
+      <div className="winner-text">勝者</div>
+        <button onClick={() => this.reset()}>RESET</button></div>);
+    }
+  }
+
   render() {
+
     return (
       <div>
         {
           this.state.result ?
-            <div>{this.state.winnerName} WINS!
-            <button onClick={() => this.reset()}>RESET</button></div>
-            :
+            this.renderWinner() :
             <div className="center">
               <div className="row">
                 <div className="rate">
@@ -224,7 +236,7 @@ class App extends Component {
                 <div className="score">
                   {this.state.winA}
                 </div>
-                <div>
+                <div className="money">
                   此輪總投注: {this.state.currentMoneyA}
                 </div>
                 <input
@@ -232,7 +244,7 @@ class App extends Component {
                   value={this.state.inputMoneyA}
                   onChange={this.handleInputMoneyA}
                 />
-              <div onClick={this.updateCurrentMoneyA}>加注</div>
+                <div className="money" onClick={this.updateCurrentMoneyA}>加注</div>
                 <div className="hands">
                   <div
                     className="handdiv"
@@ -271,7 +283,7 @@ class App extends Component {
                 <div className="score">
                   {this.state.winB}
                 </div>
-                <div>
+                <div className="money">
                   此輪總投注: {this.state.currentMoneyB}
                 </div>
                 <input
@@ -279,7 +291,7 @@ class App extends Component {
                   value={this.state.inputMoneyB}
                   onChange={this.handleInputMoneyB}
                 />
-                <div onClick={this.updateCurrentMoneyB}>加注</div>
+              <div className="money" onClick={this.updateCurrentMoneyB}>加注</div>
                 <div className="hands">
                   <div
                     className="handdiv"
@@ -309,8 +321,8 @@ class App extends Component {
                     }
                   </div>
                 </div>
-                <button onClick={this.checkWin}>Check</button>
               </div>
+              <button onClick={this.checkWin} className="check">F I G H T !</button>
             </div>
         }
       </div>

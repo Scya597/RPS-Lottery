@@ -1,15 +1,36 @@
 @font-face {
-  font-family: "Lemonada-Regular";
-  src:url("assets/font/Lemonada-Regular.ttf");
+  font-family: "Roboto-Black";
+  src:url("assets/font/Roboto-Black.ttf");
+}
+
+@font-face {
+  font-family: "WeibeiTC-Bold";
+  src:url("assets/font/WeibeiTC-Bold.otf");
 }
 
 input {
   text-align: center;
+  margin-left: 80px;
+}
+
+.winner {
+  text-align: center;
+  border-radius: 50%;
+}
+.winner-text {
+  font-family: "WeibeiTC-Bold";
+  font-size: 300px;
+  color: white;
+  margin-top: -400px;
+  margin-left: 50px;
+}
+
+.money {
+  margin-left: 80px;
 }
 
 .row {
   width: 246px;
-  margin-bottom: 10px;
 }
 
 .picked {
@@ -27,12 +48,13 @@ input {
 
 .center {
   text-align: center;
+  position: relative;
 }
 
 .player {
   background-color: rgba(255, 255, 255, .8);
-  padding: 0 18px 1px 18px;
-  margin-top: -50px;
+  padding: 0 18px 0px 18px;
+  margin-top: -30px;
   border-radius: 200px;
   overflow: hidden;
   height: 400px;
@@ -49,8 +71,8 @@ input {
 }
 
 .hands {
-  padding-top: 50px;
-  padding-left: 160px;
+  padding-top: 10px;
+  padding-left: 200px;
   position: relative;
 }
 
@@ -60,16 +82,57 @@ input {
 }
 
 .score {
-  font-family: "Lemonada-Regular";
+  font-family: "Roboto-Black";
   font-weight: 700;
   font-size: 70px;
   top: -80px;
+  margin-left: 80px;
 }
 
 .rate {
-  font-family: "Lemonada-Regular";
+  font-family: "Roboto-Black";
   font-weight: 700;
   font-size: 100px;
   color: red;
-  text-shadow: -5px 0 white;
+  margin-left: 80px;
+}
+
+.check {
+  position: absolute;
+  top:70%;
+  left:50%;
+  margin-left: -90px;
+  margin-top: 550px;
+  width: 180px;
+  height: 80px;
+  text-align: center;
+}
+button {
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid red;
+  color:red;
+  letter-spacing:1px;
+  text-shadow:0;
+  font:{
+    size:18px;
+    weight:bold;
+  }
+  cursor: pointer;
+  transition: all 0.25s ease;
+  &:hover {
+    color:white;
+    background: red;
+  }
+  &:active {
+    //letter-spacing: 2px;
+    letter-spacing: 2px ;
+  }
+  // &:after {
+  //   content:"F I G H T !";
+  // }
 }
